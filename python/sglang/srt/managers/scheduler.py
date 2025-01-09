@@ -1024,6 +1024,8 @@ class Scheduler:
                     logits_output.normalized_prompt_logprobs = (
                         logits_output.normalized_prompt_logprobs.tolist()
                     )
+                if batch.return_hidden_state:
+                    logits_output.hidden_states = logits_output.hidden_states.tolist()
 
             # Check finish conditions
             logprob_pt = 0

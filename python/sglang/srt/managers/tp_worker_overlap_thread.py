@@ -182,6 +182,10 @@ class TpModelWorkerClient:
                 logits_output.normalized_prompt_logprobs = (
                     logits_output.normalized_prompt_logprobs.tolist()
                 )
+        
+        if logits_output.hidden_states is not None:
+            logits_output.hidden_states = logits_output.hidden_states.tolist()
+
         next_token_ids = next_token_ids.tolist()
         return logits_output, next_token_ids
 
