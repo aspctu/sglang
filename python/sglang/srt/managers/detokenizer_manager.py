@@ -194,7 +194,7 @@ class DetokenizerManager:
                     output_top_logprobs_val=recv_obj.output_top_logprobs_val,
                     output_top_logprobs_idx=recv_obj.output_top_logprobs_idx,
                     normalized_prompt_logprob=recv_obj.normalized_prompt_logprob,
-                    hidden_states=recv_obj.hidden_states,
+                    # hidden_states=recv_obj.hidden_states,
                 )
             )
             print(f"Sent a batch of {bs} requests to the tokenizer")

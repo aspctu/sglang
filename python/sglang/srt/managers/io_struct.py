@@ -197,7 +197,7 @@ class GenerateReqInput:
         self.rid = uuid.uuid4().hex
         return self.rid
 
-    def __getitem__(self, i):)
+    def __getitem__(self, i):
         return GenerateReqInput(
             text=self.text[i] if self.text is not None else None,
             input_ids=self.input_ids[i] if self.input_ids is not None else None,
