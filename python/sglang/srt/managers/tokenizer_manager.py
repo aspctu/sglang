@@ -213,6 +213,7 @@ class TokenizerManager:
                 "Please add `--is-embedding` when launching the server or try another model."
             )
 
+
         obj.normalize_batch_and_arguments()
 
         if self.server_args.log_requests:
@@ -293,6 +294,7 @@ class TokenizerManager:
                 lora_path=obj.lora_path,
                 input_embeds=input_embeds,
                 session_params=session_params,
+                return_hidden_state=obj.return_hidden_state,
             )
         elif isinstance(obj, EmbeddingReqInput):
             tokenized_obj = TokenizedEmbeddingReqInput(
@@ -640,6 +642,9 @@ class TokenizerManager:
                         "finish_reason": recv_obj.finished_reasons[i],
                         "prompt_tokens": recv_obj.prompt_tokens[i],
                     }
+
+                    if getattr(state.obj, "return_hidden_state", False) and hasattr(recv_obj, 'hidden_states') and recv_obj.hidden_states:
+                        meta_info["hidden_states"] = recv_obj.hidden_states[i] if i < len(recv_obj.hidden_states) else None
 
                     if getattr(state.obj, "return_logprob", False):
                         self.convert_logprob_style(

@@ -194,9 +194,9 @@ class DetokenizerManager:
                     output_top_logprobs_val=recv_obj.output_top_logprobs_val,
                     output_top_logprobs_idx=recv_obj.output_top_logprobs_idx,
                     normalized_prompt_logprob=recv_obj.normalized_prompt_logprob,
+                    hidden_states=recv_obj.hidden_states,
                 )
             )
-
 
 class LimitedCapacityDict(OrderedDict):
     def __init__(self, capacity=1 << 15, *args, **kwargs):

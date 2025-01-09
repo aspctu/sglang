@@ -156,6 +156,11 @@ class TpModelWorkerClient:
                             "cpu", non_blocking=True
                         )
                     )
+
+            if model_worker_batch.capture_hidden_mode is not None:
+                if model_worker_batch.spec_info is not None:
+                    logits_output.hidden_states = logits_output.hidden_states.to("cpu", non_blocking=True)
+
             next_token_ids = next_token_ids.to("cpu", non_blocking=True)
             copy_done.record()
 
@@ -177,6 +182,10 @@ class TpModelWorkerClient:
                 logits_output.normalized_prompt_logprobs = (
                     logits_output.normalized_prompt_logprobs.tolist()
                 )
+        
+        if logits_output.hidden_states is not None:
+            logits_output.hidden_states = logits_output.hidden_states.tolist()
+
         next_token_ids = next_token_ids.tolist()
         return logits_output, next_token_ids
 
