@@ -1056,6 +1056,9 @@ class Scheduler:
                     if req.grammar is not None:
                         req.grammar.accept_token(next_token_id)
                         req.grammar.finished = req.finished()
+                        
+                    if req.return_hidden_state:
+                        req.hidden_states.append(logits_output.hidden_states[i])
                 else:
                     # being chunked reqs' prefill is not finished
                     req.is_being_chunked -= 1
@@ -1349,9 +1352,6 @@ class Scheduler:
                         
                     if return_hidden_state:
                         hidden_states.append(req.hidden_states)
-            
-            if return_hidden_state:    
-                print(f"The object we're sending to detokenizer contains hidden states of shape {len(hidden_states)}")
 
             # Send to detokenizer
             if rids:

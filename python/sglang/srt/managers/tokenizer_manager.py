@@ -634,8 +634,6 @@ class TokenizerManager:
                 InitWeightsUpdateGroupReqOutput,
             ] = await self.recv_from_detokenizer.recv_pyobj()
 
-            print(f"We recieved a request within the tokenizer event loop")
-
             if isinstance(recv_obj, (BatchStrOut, BatchEmbeddingOut, BatchTokenIDOut)):
                 for i, rid in enumerate(recv_obj.rids):
                     state = self.rid_to_state.get(rid, None)
