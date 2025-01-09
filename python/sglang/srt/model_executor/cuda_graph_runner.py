@@ -133,7 +133,7 @@ class CudaGraphRunner:
 
         if max(self.capture_bs) > model_runner.req_to_token_pool.size:
             # In some case (e.g., with a small GPU or --max-running-requests), the #max-running-requests
-            # is very samll. We add more values here to make sure we capture the maximum bs.
+            # is very small. We add more values here to make sure we capture the maximum bs.
             self.capture_bs = list(
                 sorted(
                     set(

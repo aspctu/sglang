@@ -279,9 +279,6 @@ class TokenizerManager:
         sampling_params.normalize(self.tokenizer)
         sampling_params.verify()
 
-        is_instance_of_generate_req_input = isinstance(obj, GenerateReqInput)
-        is_instance_of_embedding_req_input = isinstance(obj, EmbeddingReqInput)
-
         # Build return object
         if isinstance(obj, GenerateReqInput):
             tokenized_obj = TokenizedGenerateReqInput(
