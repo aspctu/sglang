@@ -722,6 +722,7 @@ class Engine:
         top_logprobs_num: Optional[Union[List[int], int]] = None,
         lora_path: Optional[List[Optional[str]]] = None,
         stream: bool = False,
+        return_hidden_state: Optional[Union[List[bool], bool]] = False,
     ):
         obj = GenerateReqInput(
             text=prompt,
@@ -732,6 +733,7 @@ class Engine:
             top_logprobs_num=top_logprobs_num,
             lora_path=lora_path,
             stream=stream,
+            return_hidden_state=return_hidden_state,
         )
 
         # get the current event loop
@@ -773,6 +775,7 @@ class Engine:
         top_logprobs_num: Optional[Union[List[int], int]] = None,
         lora_path: Optional[List[Optional[str]]] = None,
         stream: bool = False,
+        return_hidden_state: Optional[Union[List[bool], bool]] = False,
     ):
         obj = GenerateReqInput(
             text=prompt,
@@ -783,6 +786,7 @@ class Engine:
             top_logprobs_num=top_logprobs_num,
             lora_path=lora_path,
             stream=stream,
+            return_hidden_state=return_hidden_state,
         )
 
         ret = await generate_request(obj, None)

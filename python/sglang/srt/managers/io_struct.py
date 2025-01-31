@@ -83,6 +83,9 @@ class GenerateReqInput:
                 "Either text, input_ids or input_embeds should be provided."
             )
 
+        if self.stream and self.return_hidden_state:
+            raise ValueError("stream and return_hidden_state cannot be both true")
+
         # Derive the batch size
         if self.text is not None:
             if isinstance(self.text, str):
